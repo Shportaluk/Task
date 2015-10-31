@@ -1,0 +1,30 @@
+﻿@model Todo.WebUI.Models.TaskModel
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/styles/style.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+
+    <form method="post" action="/task/Update">
+        <div id="Update">
+            <p> Task: editing</p>
+            <p>Id</p>@Html.TextBoxFor(m => m.Id)
+            <p>Title</p> @Html.TextBoxFor(m => m.Title)
+            <p>Is Done</p> @Html.TextBoxFor(m => m.IsDone)
+            <input type="submit" value="Save" />
+        </div>
+    </form>
+
+     <form method="get" action="/task/Cancel">
+         <input type="submit" value="Cancel" />
+     </form>
+</body>
+</html>

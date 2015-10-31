@@ -1,0 +1,46 @@
+﻿@using Todo.Entity
+@{
+    List<TaskEntity> listTaskEntity = ViewBag.ListTaskEntity;
+    string prevenction = ViewBag.Prevenction;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/styles/style.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    <form method="POST">
+        <div id="add">
+            <input type="text" name="txt" id="input_txt"/>
+            <input type="submit" name="btn_add" id="btn_add" />
+            <p id="prevenction_p">@prevenction</p>
+        </div>
+    </form>
+
+        <table id="table_list_task">
+            @foreach (var ent in listTaskEntity)
+            {
+                <tr>
+                    <td>@ent.Id</td>
+                    <td>@ent.Title</td>
+                    <td><input type="checkbox" id="checkbox" checked="@ent.IsDone" />
+
+                    <td>
+                        <form method="POST" action="/task/DeleteTask">
+                            <input type="hidden" name="taskId" value="@ent.Id" />
+                            <input type="hidden" name="taskTitle" value="@ent.Title" />
+                            <input type="submit" name="btn_delete" id="delete" value="-" />
+                            <a href="/task/edit?id=@ent.Id" >Edit</a>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </table>
+    
+</body>
+</html>
