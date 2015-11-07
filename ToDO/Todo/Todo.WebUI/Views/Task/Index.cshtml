@@ -2,6 +2,7 @@
 @{
     List<TaskEntity> listTaskEntity = ViewBag.ListTaskEntity;
     string prevenction = ViewBag.Prevenction;
+    string select = ViewBag.Select;
 }
 
 <!DOCTYPE html>
@@ -11,6 +12,8 @@
     <link href="~/styles/style.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <script src="~/Scripts/libs/jquery/jquery-2.1.4.js"></script>
+
 </head>
 <body>
 
@@ -22,25 +25,39 @@
         </div>
     </form>
 
+    <form method="post" action="/task/Get_Task">
+        <div id="div_select_search">
+            <select id="select_search">
+                <option value="Done">Done</option>
+                <option value="Dont_Done">Dont_Done</option>
+                <option value="All">All</option>
+            </select>
+            <input type="hidden" name="select" id="select_hidden" value="@select" />
+            <input type="submit" name="btn_search" id="btn_search" value="Go" />
+        </div>
+    </form>
+
+
         <table id="table_list_task">
             @foreach (var ent in listTaskEntity)
             {
                 <tr>
                     <td>@ent.Id</td>
                     <td>@ent.Title</td>
-                    <td><input type="checkbox" id="checkbox" checked="@ent.IsDone" />
+                    <td><input type="checkbox" data-task-id="@ent.Id" class="checkbox_x" checked="@ent.IsDone" />
 
                     <td>
                         <form method="POST" action="/task/DeleteTask">
                             <input type="hidden" name="taskId" value="@ent.Id" />
                             <input type="hidden" name="taskTitle" value="@ent.Title" />
-                            <input type="submit" name="btn_delete" id="delete" value="-" />
-                            <a href="/task/edit?id=@ent.Id" >Edit</a>
+                            <input type="submit" name="btn_delete" class="delete" value="X" />
+                            <a class="link_edit" href="/task/edit?id=@ent.Id">Edit</a>
                         </form>
                     </td>
                 </tr>
             }
         </table>
-    
+
+    <script src="~/Scripts/pages/tasks-page.js"></script>
 </body>
 </html>

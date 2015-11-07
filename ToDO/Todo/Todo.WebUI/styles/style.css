@@ -31,6 +31,91 @@
     background-color: white;
 }
 
+
+
+#div_select_search {
+    margin: auto;
+    width: 163px;
+    padding: 3px;
+    background-color: #A9F5E1;
+    border: 2px solid #2ECCFA;
+    margin-bottom: -2px;
+    box-shadow: 0 0 5px #2EFEF7;
+    transition: 0.7s;
+}
+
+#div_select_search:hover {
+    background-color: #2EFEF7;
+    transition: 0.1s;
+}
+#select_search{
+    padding: 7px;
+}
+
+#select_search option {
+    background-color: #2EFEF7;
+    color: white;
+    margin: 10px;
+    padding: 10px;
+}
+
+
+#btn_search {
+    background: linear-gradient( to left, white, #2EFEF7, white ); 
+    text-shadow: 0 0 3px black;
+    color: white;
+    border: 1px solid #2EFEF7;
+    width: 50px;
+    height: 25px;
+    box-shadow: 0 0 5px #0c3f9b ;
+    transition: 0.05s;
+}
+
+#btn_search:hover {
+    background: linear-gradient( to left, #2EFEF7, white, #2EFEF7 ); 
+    color:#2EFEF7;
+    font-weight: bold;
+    box-shadow: 0 0 5px blue;
+    transition: 0.01s;
+}
+
+
+.delete {
+    border:none;
+    box-shadow: 0 0 1px rgba( 10, 220, 200, 1);
+    background-color: rgba( 10, 220, 200, 1);
+    border: 1px solid #00BFFF;
+    transition: 0.9s;
+}
+
+.delete:hover {
+    font-weight: bolder;
+    background-color: #A9F5E1;
+    border: 1px solid #00BFFF;
+    text-shadow: 0 0 1px black;
+    color: white;
+    transition: 0s;
+}
+
+.link_edit {
+    color: white;
+    text-decoration: none;
+    background-color: rgba( 10, 220, 200, 1);
+    padding: 3px 10px 3px 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+
+    box-shadow: 0 0 5px white;
+    transition: 0.5s;
+}
+
+.link_edit:hover {
+    padding: 3px 15px 3px 15px;
+    margin-left: 0px;
+    margin-right: 0px;
+    transition: 0s;
+}
+
 #prevenction_p{
     margin: 5px;
     color: red;
@@ -48,20 +133,19 @@
     box-shadow: 0 0 5px #2EFEF7;
 }
 
-tr{
+#table_list_task tr{
     transition: 1.35s;
     background-color: #A9F5E1;
 }
 
-tr:hover{
-    color: white;
-    background-color: #81F7F3;
-    transition: 0.05s;
+#table_list_task td{
+    padding: 5px;
 }
 
-#checkbox{
-    border: 1px solid white;
-    background-color: red;
+#table_list_task tr:hover{
+    color: white;
+    background-color: #A9F5E1;
+    transition: 0.05s;
 }
 
 

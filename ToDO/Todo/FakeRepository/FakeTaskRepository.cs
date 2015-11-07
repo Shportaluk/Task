@@ -8,7 +8,7 @@ using Todo.Entity;
 namespace FakeRepository
 {
 
-    public class FakeTaskRepository : ITaskRepository
+    public class FakeTaskRepository //: ITaskRepository
     {
         static List<TaskEntity> listTask = new List<TaskEntity>();
         static int globalId = 0;

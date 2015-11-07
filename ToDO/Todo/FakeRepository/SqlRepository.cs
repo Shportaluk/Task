@@ -15,11 +15,11 @@ namespace SqlRepository
     {
         List<TaskEntity> listTask = new List<TaskEntity>();
         string con_str = "Data Source=.\\SQLExpress;Initial Catalog=master;Integrated Security=True";
+        //string con_str = "Server=10.7.1.10;Database=SAP_TASK_TODO;User Id=sa;Password=123456;";
 
 
         public List<TaskEntity> GetAll()
         {
-            //string con_str = ConfigurationManager.ConnectionStrings["str_con"].ConnectionString;
             SqlConnection con = new SqlConnection(con_str);
             SqlCommand cmd = new SqlCommand();
 
@@ -53,6 +53,60 @@ namespace SqlRepository
             return listTask;
         }
 
+        public List<TaskEntity> GetDone()
+        {
+            SqlConnection con = new SqlConnection(con_str);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "SELECT * FROM tbl_task WHERE IsDone = 1";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = con;
+
+            con.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            int id;
+            string title;
+            bool isDone;
+
+            while (reader.Read())
+            {
+                id = int.Parse( reader[0].ToString() );
+                title = reader[1].ToString();
+                isDone = Boolean.Parse(reader[2].ToString());
+
+                listTask.Add(new TaskEntity(id, title, isDone) );
+            }
+
+            return listTask;
+        }
+
+        public List<TaskEntity> GetDontDone()
+        {
+            SqlConnection con = new SqlConnection(con_str);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "SELECT * FROM tbl_task WHERE IsDone = 0";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = con;
+
+            con.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            int id;
+            string title;
+            bool isDone;
+
+            while (reader.Read())
+            {
+                id = int.Parse( reader[0].ToString() );
+                title = reader[1].ToString();
+                isDone = Boolean.Parse( reader[2].ToString() );
+
+                listTask.Add( new TaskEntity( id, title, isDone ) );
+            }
+
+            return listTask;
+        }
 
         public void Add(string txt)
         {
@@ -129,12 +183,26 @@ namespace SqlRepository
             SqlConnection con = new SqlConnection(con_str);
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = string.Format("UPDATE tbl_task SET Title = '{0}', IsDone = '{1}' WHERE id = {2}", Title, IsDone, Id);
+            cmd.CommandText = string.Format("UPDATE tbl_task SET Title = '{0}', IsDone = '{1}' WHERE Id = {2}", Title, IsDone, Id);
             cmd.CommandType = CommandType.Text;
             cmd.Connection = con;
 
             con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
+            con.Close();
+        }
+
+        public void ChangeStatus( int id )
+        {
+            SqlConnection con = new SqlConnection(con_str);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = string.Format("UPDATE tbl_task SET IsDone = 1 WHERE Id = {0}", id );
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = con;
+
+            con.Open();
+                cmd.ExecuteReader();
             con.Close();
         }
     }

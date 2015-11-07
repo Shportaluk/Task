@@ -10,9 +10,12 @@ namespace FakeRepository
     public interface ITaskRepository
     {
         List<TaskEntity> GetAll();
+        List<TaskEntity> GetDone();
+        List<TaskEntity> GetDontDone();
         void Add(string txt);
         void Delete(int id, string taskTitle);
         TaskEntity SelectById( int Id );
         void Update(int Id, string Title, bool IsDone);
+        void ChangeStatus(int id);
     }
 }
