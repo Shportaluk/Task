@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Todo.Entity;
 
 namespace Todo.WebUI.Models
 {
@@ -10,11 +11,13 @@ namespace Todo.WebUI.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public bool IsDone { get; set; }
-        public TaskModel( int id, string title, bool is_done )
+        public PriorityValue Priority { get; set; }
+        public TaskModel( int id, string title, bool is_done, PriorityValue priority )
         {
             Id = id;
             Title = title;
             IsDone = is_done;
+            Priority = PriorityValue.critical;
         }
 
     }

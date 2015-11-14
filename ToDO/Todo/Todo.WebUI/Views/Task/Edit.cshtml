@@ -1,4 +1,5 @@
-﻿@model Todo.WebUI.Models.TaskModel
+﻿@using System.Web.Mvc.Html
+@model Todo.WebUI.Models.TaskModel
 @{
     Layout = null;
 }
@@ -19,6 +20,7 @@
             <p>Id</p>@Html.TextBoxFor(m => m.Id)
             <p>Title</p> @Html.TextBoxFor(m => m.Title)
             <p>Is Done</p> @Html.TextBoxFor(m => m.IsDone)
+            <p>Priority</p>@Html.TextBoxFor(m => m.Priority)
             <input type="submit" value="Save" />
         </div>
     </form>

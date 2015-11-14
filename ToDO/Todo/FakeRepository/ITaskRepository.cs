@@ -15,7 +15,7 @@ namespace FakeRepository
         void Add(string txt);
         void Delete(int id, string taskTitle);
         TaskEntity SelectById( int Id );
-        void Update(int Id, string Title, bool IsDone);
+        void Update(int Id, string Title, bool IsDone, int Priority);
         void ChangeStatus(int id);
     }
 }

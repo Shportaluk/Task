@@ -32,7 +32,7 @@ namespace FakeRepository
 
             #endregion
 
-            listTask.Add(new TaskEntity( globalId, txt, false));
+            listTask.Add(new TaskEntity( globalId, txt, false, 2));
             globalId++;
         }
 

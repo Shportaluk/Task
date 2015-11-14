@@ -33,7 +33,7 @@ namespace SqlRepository
             int id;
             string title;
             bool isDone;
-
+            int priority;
             
 
             while (reader.Read())
@@ -42,7 +42,8 @@ namespace SqlRepository
                 id = int.Parse( reader[0].ToString() );
                 title = reader[1].ToString();
                 isDone = Boolean.Parse( reader[2].ToString() );
-                TaskEntity task = new TaskEntity( id , title, isDone );
+                priority = int.Parse( reader[3].ToString() );
+                TaskEntity task = new TaskEntity( id , title, isDone, priority );
 
                 listTask.Add(task);
             }
@@ -65,17 +66,21 @@ namespace SqlRepository
             con.Open();
             SqlDataReader reader = cmd.ExecuteReader();
 
+
             int id;
             string title;
             bool isDone;
+            int priority;
+
 
             while (reader.Read())
             {
-                id = int.Parse( reader[0].ToString() );
+
+                id = int.Parse(reader[0].ToString());
                 title = reader[1].ToString();
                 isDone = Boolean.Parse(reader[2].ToString());
-
-                listTask.Add(new TaskEntity(id, title, isDone) );
+                priority = int.Parse(reader[3].ToString());
+                TaskEntity task = new TaskEntity(id, title, isDone, priority);
             }
 
             return listTask;
@@ -95,14 +100,15 @@ namespace SqlRepository
             int id;
             string title;
             bool isDone;
+            int priority;
 
             while (reader.Read())
             {
                 id = int.Parse( reader[0].ToString() );
                 title = reader[1].ToString();
                 isDone = Boolean.Parse( reader[2].ToString() );
-
-                listTask.Add( new TaskEntity( id, title, isDone ) );
+                priority = int.Parse(reader[3].ToString());
+                TaskEntity task = new TaskEntity(id, title, isDone, priority);
             }
 
             return listTask;
@@ -126,7 +132,7 @@ namespace SqlRepository
             SqlConnection con = new SqlConnection(con_str);
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = string.Format( "INSERT INTO tbl_task VALUES ( '{0}', 'False' )", txt );
+            cmd.CommandText = string.Format("INSERT INTO tbl_task VALUES ( '{0}' , '0', 2 );", txt);
             cmd.CommandType = CommandType.Text;
             cmd.Connection = con;
 
@@ -162,6 +168,7 @@ namespace SqlRepository
             int id = 0;
             string title = " ";
             bool isDone = false;
+            int priority = 0;
 
             con.Open();
             SqlDataReader reader = cmd.ExecuteReader();
@@ -170,20 +177,20 @@ namespace SqlRepository
                 id = int.Parse(reader[0].ToString());
                 title = reader[1].ToString();
                 isDone = Boolean.Parse(reader[2].ToString());
-                
+                priority = int.Parse( reader[3].ToString() );
             }
 
             con.Close();
-            TaskEntity task = new TaskEntity(id, title, isDone);
+            TaskEntity task = new TaskEntity(id, title, isDone, priority);
             return task;
         }
 
-        public void Update(int Id, string Title, bool IsDone)
+        public void Update(int Id, string Title, bool IsDone, int Priority)
         {
             SqlConnection con = new SqlConnection(con_str);
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = string.Format("UPDATE tbl_task SET Title = '{0}', IsDone = '{1}' WHERE Id = {2}", Title, IsDone, Id);
+            cmd.CommandText = string.Format("UPDATE tbl_task SET Title = '{0}', IsDone = '{1}', Priority = {2} WHERE Id = {3}", Title, IsDone,  Priority, Id);
             cmd.CommandType = CommandType.Text;
             cmd.Connection = con;
 

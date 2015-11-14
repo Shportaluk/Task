@@ -11,11 +11,13 @@ namespace Todo.Entity
         public int Id { get; set; }
         public string Title { get; set; }
         public bool IsDone { get; set; }
-        public TaskEntity( int id, string title, bool is_done )
+        public PriorityValue Priority { get; set; }
+        public TaskEntity( int id, string title, bool is_done, int priority )
         {
             Id = id;
             Title = title;
             IsDone = is_done;
+            Priority = (PriorityValue)priority;
         }
     }
 }

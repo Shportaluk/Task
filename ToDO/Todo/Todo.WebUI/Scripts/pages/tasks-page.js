@@ -21,6 +21,7 @@
 
             $("input[type='checkbox'][data-task-id=" + Id + "]").attr("disabled", true);
         }
+        $("#table_list_task tr input[type='checkbox'][checked='checked']").parent().parent().css("background", "#D8D8D8");
     };
 
     var onSelectClick = function (e) {
@@ -32,14 +33,19 @@
         console.log("[tasks-page] - init");
 
         var ch = $("input[type='checkbox'][checked='checked']").attr("disabled", true);
-        //
+        $("#table_list_task tr input[type='checkbox'][checked='checked']").css( "background", "red" );
+        
+
+        $("#table_list_task tr input[type='checkbox'][checked='checked']").parent().parent().css("background", "#D8D8D8" )
+
+        //$("#table_list_task tr input[type='checkbox'][checked='checked']").parent().parent().css("border", "none")
         //console.log("");
 
         $("input[type='checkbox']").on("click", onIsDoneClick);
 
 
         var s = $("#select_hidden").val();
-         $("#select_search option[value="+s+"]").attr("selected", "selected");
+        $("#select_search option[value=" + s + "]").attr("selected", "selected");
 
 
         $("#select_search").on( "click", onSelectClick );

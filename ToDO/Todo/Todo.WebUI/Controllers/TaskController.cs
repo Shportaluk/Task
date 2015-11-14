@@ -95,15 +95,15 @@ namespace Todo.WebUI.Controllers
         {
             _select = "All";
             TaskEntity taskEntity = _taskRepository.SelectById(Id);
-            TaskModel model = new TaskModel( taskEntity.Id, taskEntity.Title, taskEntity.IsDone );
+            TaskModel model = new TaskModel( taskEntity.Id, taskEntity.Title, taskEntity.IsDone, taskEntity.Priority );
             return View( model );
         }
 
         [HttpPost]
-        public ActionResult Update( int id, string title, bool isDone )
+        public ActionResult Update( int id, string title, bool isDone, int priority )
         {
             _select = "All";
-            _taskRepository.Update( id, title, isDone );
+            _taskRepository.Update( id, title, isDone, priority );
             listTaskEntity = _taskRepository.GetAll();
 
             return RedirectToAction("index");

@@ -38,14 +38,23 @@
     </form>
 
 
-        <table id="table_list_task">
+        <table id="table_list_task" cellspacing="0">
             @foreach (var ent in listTaskEntity)
             {
                 <tr>
                     <td>@ent.Id</td>
                     <td>@ent.Title</td>
                     <td><input type="checkbox" data-task-id="@ent.Id" class="checkbox_x" checked="@ent.IsDone" />
-
+                    <td>@ent.Priority</td>
+                    <td>
+                        <select>
+                            <option>critical</option>
+                            <option>height</option>
+                            <option>normal</option>
+                            <option>low</option>
+                            <option>minimum</option>
+                        </select>
+                    </td>
                     <td>
                         <form method="POST" action="/task/DeleteTask">
                             <input type="hidden" name="taskId" value="@ent.Id" />
