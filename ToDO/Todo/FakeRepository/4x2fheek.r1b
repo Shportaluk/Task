@@ -17,9 +17,9 @@ namespace SqlRepository
         //string con_str = "Data Source=.\\SQLExpress;Initial Catalog=master;Integrated Security=True";
         string con_str { get; set; }
 
-        public SqlTaskRepository( string con_str )
+        public SqlTaskRepository()
         {
-            this.con_str = con_str;
+            
         }
         public List<TaskEntity> GetAll()
         {

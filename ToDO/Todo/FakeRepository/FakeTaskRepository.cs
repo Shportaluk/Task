@@ -8,7 +8,7 @@ using Todo.Entity;
 namespace FakeRepository
 {
 
-    public class FakeTaskRepository //: ITaskRepository
+    public class FakeTaskRepository : ITaskRepository
     {
         static List<TaskEntity> listTask = new List<TaskEntity>();
         static int globalId = 0;
@@ -51,6 +51,27 @@ namespace FakeRepository
             var task = listTask.FirstOrDefault(i => i.Id == Id );
             task.Title = Title;
             task.IsDone = IsDone;
+        }
+
+
+        public List<TaskEntity> GetDone()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<TaskEntity> GetDontDone()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(int Id, string Title, bool IsDone, int Priority)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ChangeStatus(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

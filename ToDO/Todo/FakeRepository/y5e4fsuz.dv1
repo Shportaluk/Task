@@ -19,7 +19,7 @@ namespace SqlRepository
 
         public SqlTaskRepository( string con_str )
         {
-            this.con_str = con_str;
+            
         }
         public List<TaskEntity> GetAll()
         {

@@ -16,10 +16,10 @@ namespace Todo.WebUI.Controllers
         static public List<TaskEntity> listTaskEntity = new List<TaskEntity>();
         static string _select = "All";
 
-        public TaskController()
+        public TaskController( ITaskRepository taskRepository )
         {
             //this._taskRepository = new FakeTaskRepository();
-            this._taskRepository = new SqlTaskRepository();
+            this._taskRepository = taskRepository;
         }
         // GET: /Todo/
         [HttpGet]

@@ -1,0 +1,34 @@
+﻿@model Todo.WebUI.Models.LoginModel
+
+@{
+    Layout = null;
+    string error = ViewBag.Error;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <div>
+        <div>
+            <p>Автентифікація</p>
+            <form method="post">
+                <p id="p_login">Login</p>
+                @Html.TextBoxFor( m => m.User )
+                <p id="p_pass">Pass</p>
+                @Html.PasswordFor( m => m.Pass )
+                <input type="submit" />
+            </form>
+            
+           @if (!String.IsNullOrWhiteSpace(@error))
+           {
+               <p style="color:red">@error</p>
+           }   
+        </div>
+    </div>
+</body>
+</html>
