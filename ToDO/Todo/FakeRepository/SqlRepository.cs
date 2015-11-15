@@ -14,8 +14,8 @@ namespace SqlRepository
     public class SqlTaskRepository : ITaskRepository
     {
         List<TaskEntity> listTask = new List<TaskEntity>();
-        string con_str = "Data Source=.\\SQLExpress;Initial Catalog=master;Integrated Security=True";
-        //string con_str = "Server=10.7.1.10;Database=SAP_TASK_TODO;User Id=sa;Password=123456;";
+        //string con_str = "Data Source=.\\SQLExpress;Initial Catalog=master;Integrated Security=True";
+        string con_str = "Server=10.7.1.10;Database=SAP_TASK_TODO;User Id=sa;Password=123456;";
 
 
         public List<TaskEntity> GetAll()
