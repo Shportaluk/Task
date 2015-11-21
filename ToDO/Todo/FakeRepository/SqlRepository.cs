@@ -15,7 +15,12 @@ namespace SqlRepository
     {
         List<TaskEntity> listTask = new List<TaskEntity>();
         //string con_str = "Data Source=.\\SQLExpress;Initial Catalog=master;Integrated Security=True";
-        string con_str { get; set; }
+        private string con_str { get; set; }
+
+        public SqlTaskRepository()
+        {
+            con_str = "Data Source=.\\SQLExpress;Initial Catalog=master;Integrated Security=True";
+        }
 
         public SqlTaskRepository( string con_str )
         {
@@ -214,6 +219,28 @@ namespace SqlRepository
             con.Open();
                 cmd.ExecuteReader();
             con.Close();
+        }
+
+        public bool CheckUser( string user, string pass )
+        {
+            SqlConnection con = new SqlConnection(con_str);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = string.Format("SELECT * FROM tbl_Users WHERE Login = '{0}' and Pass = '{1}'",user, pass);
+            cmd.Connection = con;
+
+            con.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                if (!string.IsNullOrWhiteSpace( reader[0].ToString() ) )
+                { return true; }
+            }
+
+            con.Close();
+               
+            return false;
         }
     }
 }

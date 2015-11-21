@@ -7,6 +7,13 @@ CREATE TABLE tbl_task
 	IsDone BIT,
 	Priority INT
 );
+
+CREATE TABLE tbl_Users
+(
+	Id INT IDENTITY (1,1),
+	Login NCHAR(255),
+	Pass NCHAR(255)
+);
 /*0 critical - 1 height - 2 normal - 3 low - 4 minimum */
 
 INSERT INTO tbl_task VALUES ( 'Task #1' , '0', 2 );
@@ -14,6 +21,11 @@ INSERT INTO tbl_task VALUES ( 'Task #2' , '1', 2 );
 INSERT INTO tbl_task VALUES ( 'Task #3' , '0', 2 );
 INSERT INTO tbl_task VALUES ( 'Task #4' , '1', 2 );
 INSERT INTO tbl_task VALUES ( 'Task #5' , '0', 2 );
+
+
+INSERT INTO tbl_Users VALUES ( 'admin' , '1111' );
+
+SELECT Id FROM tbl_Users WHERE Login = 'admin' and Pass = '1111'
 
 SELECT * FROM tbl_task
 
