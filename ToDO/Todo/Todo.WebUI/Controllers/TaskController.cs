@@ -6,19 +6,22 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Todo.Entity;
+using Todo.WebUI.Code.Managers;
 using Todo.WebUI.Models;
 
 namespace Todo.WebUI.Controllers
 {
+    [Authorize] // 
     public class TaskController : Controller
     {
         private readonly ITaskRepository _taskRepository;
+        private readonly ISecurityManager _formsSecurity;
         static public List<TaskEntity> listTaskEntity = new List<TaskEntity>();
         static string _select = "All";
 
         public TaskController( ITaskRepository taskRepository )
         {
-            //this._taskRepository = new FakeTaskRepository();
+            //_formsSecurity = new FormsSecurityManager(  );
             this._taskRepository = taskRepository;
         }
         // GET: /Todo/
@@ -124,7 +127,5 @@ namespace Todo.WebUI.Controllers
             _taskRepository.ChangeStatus( taskId );
             return RedirectToAction("index");
         }
-
-
     }
 }

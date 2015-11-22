@@ -35,5 +35,12 @@ namespace Todo.WebUI.Controllers
             ViewBag.Error = "Error !!!";
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Logout()
+        {
+            _securityManager.Logout();
+            return RedirectToAction("Login", "Security");
+        }
     }
 }

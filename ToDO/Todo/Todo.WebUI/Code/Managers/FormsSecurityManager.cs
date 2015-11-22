@@ -26,6 +26,8 @@ namespace Todo.WebUI.Code.Managers
         }
 
         public void Logout()
-        { }
+        {
+            FormsAuthentication.SignOut();
+        }
     }
 }
