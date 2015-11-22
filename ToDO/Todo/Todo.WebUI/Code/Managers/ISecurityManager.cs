@@ -8,6 +8,7 @@ namespace Todo.WebUI.Code.Managers
 {
     public interface ISecurityManager
     {
-        bool Authenticate(string User, string Pass);
+        bool Login(string User, string Pass);
+        void Logout();
     }
 }

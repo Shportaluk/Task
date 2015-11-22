@@ -60,7 +60,7 @@ namespace Todo.WebUI.Controllers
         [HttpPost]
         public ActionResult Index( string txt )
         {
-            _select = "All";
+            //_select = "All";
             ViewBag.Prevenction = " ";
 
             if (String.IsNullOrWhiteSpace(txt))
@@ -119,7 +119,7 @@ namespace Todo.WebUI.Controllers
         [HttpPost]
         public ActionResult ChangeStatus(int taskId, bool isDone)
         {
-            _select = "All";
+            //_select = "All";
             //throw new Exception();
             _taskRepository.ChangeStatus( taskId );
             return RedirectToAction("index");

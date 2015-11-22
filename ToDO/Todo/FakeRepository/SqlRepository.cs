@@ -14,12 +14,12 @@ namespace SqlRepository
     public class SqlTaskRepository : ITaskRepository
     {
         List<TaskEntity> listTask = new List<TaskEntity>();
-        //string con_str = "Data Source=.\\SQLExpress;Initial Catalog=master;Integrated Security=True";
         private string con_str { get; set; }
 
         public SqlTaskRepository()
         {
-            con_str = "Data Source=.\\SQLExpress;Initial Catalog=master;Integrated Security=True";
+            //con_str = "Data Source=.\\SQLExpress;Initial Catalog=master;Integrated Security=True";
+            con_str = "Server=10.7.1.10;Database=SAP_TASK_TODO;User Id=sa;Password=123456;";
         }
 
         public SqlTaskRepository( string con_str )

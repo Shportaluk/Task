@@ -27,7 +27,7 @@ namespace Todo.WebUI.Controllers
         [HttpPost]
         public ActionResult Login( LoginModel security )
         {
-            if (_securityManager.Authenticate(security.User, security.Pass))
+            if (_securityManager.Login(security.User, security.Pass))
             {
                 return RedirectToAction( "Index", "Task" );
             }
