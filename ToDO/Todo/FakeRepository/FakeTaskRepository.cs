@@ -12,7 +12,7 @@ namespace FakeRepository
     {
         static List<TaskEntity> listTask = new List<TaskEntity>();
         static int globalId = 0;
-        public List<TaskEntity> GetAll()
+        public List<TaskEntity> GetAll( string Id_Task )
         {
             return listTask;
         }

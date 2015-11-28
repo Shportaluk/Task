@@ -10,17 +10,18 @@ namespace FakeRepository
     public class SqlUserRepository : IUserRepository
     {
         private string con_str { get; set; }
+        public string Id_Task { get; set; }
         public SqlUserRepository()
         {
-            //con_str = "Data Source=.\\SQLExpress;Initial Catalog=master;Integrated Security=True";
-            con_str = "Server=10.7.1.10;Database=SAP_TASK_TODO;User Id=sa;Password=123456;";
+            con_str = "Data Source=.\\SQLExpress;Initial Catalog=master;Integrated Security=True";
+            //con_str = "Server=10.7.1.10;Database=SAP_TASK_TODO;User Id=sa;Password=123456;";
         }
-        public bool IsUser( string user, string pass )
+        public string IsUser( string user, string pass )
         {
             SqlConnection con = new SqlConnection(con_str);
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = string.Format("SELECT * FROM tbl_Users WHERE Login = '{0}' and Pass = '{1}'", user, pass);
+            cmd.CommandText = string.Format("SELECT Id_Task FROM tbl_Users WHERE Login = '{0}' and Pass = '{1}'", user, pass);
             cmd.Connection = con;
 
             con.Open();
@@ -29,11 +30,11 @@ namespace FakeRepository
             while (reader.Read())
             {
                 if (!string.IsNullOrWhiteSpace(reader[0].ToString()))
-                { return true; }
+                { return reader[0].ToString(); }
             }
 
             con.Close();
-            return false;
+            return null;
         }
     }
 }

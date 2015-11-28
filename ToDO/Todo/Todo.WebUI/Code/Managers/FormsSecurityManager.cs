@@ -15,14 +15,15 @@ namespace Todo.WebUI.Code.Managers
         {
             _UserRepository = repository;
         }
-        public bool Login ( string user, string pass )
+        public string Login ( string user, string pass )
         {
-            if (_UserRepository.IsUser(user, pass))
+            string id = _UserRepository.IsUser(user, pass);
+            if ( id != null )
             {
                 FormsAuthentication.SetAuthCookie( user, false );
-                return true;
+                return id;
             }
-            return false;
+            return null;
         }
 
         public void Logout()

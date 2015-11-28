@@ -9,7 +9,7 @@ namespace FakeRepository
 {
     public interface ITaskRepository
     {
-        List<TaskEntity> GetAll();
+        List<TaskEntity> GetAll( string Id_Task );
         List<TaskEntity> GetDone();
         List<TaskEntity> GetDontDone();
         void Add(string txt);

@@ -27,8 +27,10 @@ namespace Todo.WebUI.Controllers
         [HttpPost]
         public ActionResult Login( LoginModel security )
         {
-            if (_securityManager.Login(security.User, security.Pass))
+            string id = _securityManager.Login(security.User, security.Pass);
+            if ( id != null ) //////////////////////////////////// <- Id_Task
             {
+                TaskController.Id_Task = id;
                 return RedirectToAction( "Index", "Task" );
             }
 

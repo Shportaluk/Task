@@ -18,20 +18,22 @@ namespace SqlRepository
 
         public SqlTaskRepository()
         {
-            //con_str = "Data Source=.\\SQLExpress;Initial Catalog=master;Integrated Security=True";
-            con_str = "Server=10.7.1.10;Database=SAP_TASK_TODO;User Id=sa;Password=123456;";
+            con_str = "Data Source=.\\SQLExpress;Initial Catalog=master;Integrated Security=True";
+            //con_str = "Server=10.7.1.10;Database=SAP_TASK_TODO;User Id=sa;Password=123456;";
         }
 
         public SqlTaskRepository( string con_str )
         {
             this.con_str = con_str;
         }
-        public List<TaskEntity> GetAll()
+
+        public List<TaskEntity> GetAll( string Id_Task )
         {
             SqlConnection con = new SqlConnection(con_str);
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "SELECT * FROM tbl_task";
+            //cmd.CommandText = "SELECT * FROM tbl_task";
+            cmd.CommandText = String.Format( "SELECT * FROM tbl_task WHERE Id_User = {0}", Id_Task );
             cmd.CommandType = CommandType.Text;
             cmd.Connection = con;
 
@@ -226,7 +228,7 @@ namespace SqlRepository
             SqlConnection con = new SqlConnection(con_str);
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = string.Format("SELECT * FROM tbl_Users WHERE Login = '{0}' and Pass = '{1}'",user, pass);
+            cmd.CommandText = string.Format( "SELECT Id_Task FROM tbl_Users WHERE Login = '{0}' and Pass = '{1}'", user, pass );
             cmd.Connection = con;
 
             con.Open();
@@ -235,7 +237,10 @@ namespace SqlRepository
             while (reader.Read())
             {
                 if (!string.IsNullOrWhiteSpace( reader[0].ToString() ) )
-                { return true; }
+                {
+                    //Id_Task = reader[0].ToString();
+                    return true;
+                }
             }
 
             con.Close();

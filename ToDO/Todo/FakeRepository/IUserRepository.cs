@@ -8,6 +8,6 @@ namespace FakeRepository
 {
     public interface IUserRepository
     {
-        bool IsUser( string user, string pass );
+        string IsUser( string user, string pass );
     }
 }

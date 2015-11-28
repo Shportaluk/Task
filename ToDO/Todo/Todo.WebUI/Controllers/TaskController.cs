@@ -15,7 +15,7 @@ namespace Todo.WebUI.Controllers
     public class TaskController : Controller
     {
         private readonly ITaskRepository _taskRepository;
-        private readonly ISecurityManager _formsSecurity;
+        static public string Id_Task { get; set; }
         static public List<TaskEntity> listTaskEntity = new List<TaskEntity>();
         static string _select = "All";
 
@@ -39,7 +39,7 @@ namespace Todo.WebUI.Controllers
             switch (select)
             {
                 case "All":
-                    listTaskEntity = _taskRepository.GetAll();
+                    listTaskEntity = _taskRepository.GetAll( Id_Task );
                 break;
 
                 case "Done":
@@ -51,14 +51,12 @@ namespace Todo.WebUI.Controllers
                 break;
 
                 default:
-                    listTaskEntity = _taskRepository.GetAll();
+                    listTaskEntity = _taskRepository.GetAll( Id_Task );
                     break;
             }
             _select = select;
             return RedirectToAction("index");
         }
-
-
 
         [HttpPost]
         public ActionResult Index( string txt )
@@ -79,7 +77,7 @@ namespace Todo.WebUI.Controllers
                 _taskRepository.Add(txt);
             }
 
-            ViewBag.ListTaskEntity = _taskRepository.GetAll();
+            ViewBag.ListTaskEntity = _taskRepository.GetAll( Id_Task );
 
             return View();
         }
@@ -89,7 +87,7 @@ namespace Todo.WebUI.Controllers
         {
             _select = "All";
             _taskRepository.Delete(taskId, taskTitle);
-            ViewBag.ListTaskEntity = _taskRepository.GetAll();
+            ViewBag.ListTaskEntity = _taskRepository.GetAll(Id_Task);
             return RedirectToAction( "index" );
         }
 
@@ -107,7 +105,7 @@ namespace Todo.WebUI.Controllers
         {
             _select = "All";
             _taskRepository.Update( id, title, isDone, priority );
-            listTaskEntity = _taskRepository.GetAll();
+            listTaskEntity = _taskRepository.GetAll( Id_Task );
 
             return RedirectToAction("index");
         }
